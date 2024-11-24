@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>UploadPage</title>
+</head>
+<body>
+    <h2>Выберите файл для загрузки</h2>
+    <form action="upload" method="post" enctype="multipart/form-data" onsubmit="return validateFileType()">
+        <input type="file" name="uploads" accept=".xls, .xlsx, .txt" /><br />
+        <input type="file" name="uploads" accept=".xls, .xlsx, .txt" /><br />
+        <input type="submit" value="Загрузить" />
+    </form>
+
+    <script>
+
+        function validateFileType() {
+            const fileInputs = document.getElementsByName('uploads');
+            const allowedExtensions = /(\.txt|\.xls|\.xlsx)$/i
+
+            Array.from(fileInputs).forEach((fileInput) => {
+                let filePath = fileInput.value;
+                console.log(filePath);
+                if (!allowedExtensions.exec(filePath)) {
+                    alert('Выбрано недопустимое расширение файла!');
+                    fileInput.value = '';
+                    return false;
+                }
+            });
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+
+
